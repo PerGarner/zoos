@@ -1,0 +1,6 @@
+Deploy til: render, railway, fly.io
+
+Idéer:
+Dyrelister alle zoos
+'Mere info' om dyr - latinske navne, familie, levesteder mm (Wikipedia?)
+GOogle maps. Liste over zoos?

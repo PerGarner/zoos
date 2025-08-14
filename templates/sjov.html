@@ -1,0 +1,106 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoos i Danmark - blandede ting for sjov!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .search-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .search-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .search-btn:hover {
+            background-color: #45a049;
+        }
+        .results-container {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .result-item {
+            padding: 15px;
+            border-bottom: 2px solid #c15d5d;
+            margin-bottom: 10px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<title>Danske Zoos - Lister over dyr</title>
+
+<body>
+<h1>Blandet, for sjov</h1>
+
+<a href="{{ url_for('main.mainpage') }}" class="register-link">Tilbage til forsiden</a>
+
+<form method="POST" action="/sjov">
+    <label for="Zoo">Vælg et spørgsmål</label>
+    <SELECT name="choose_query" id="choose_query">
+
+        {% for element in queries %}
+            <option value="{{ element.text }}" {% if chosen_zoo == element.text %}selected{% endif %}>
+                {{ element.text }}
+            </option>
+        {% endfor %}
+    </SELECT>
+
+    <input type="submit" value="Søg" class="search-btn">
+</form>
+
+<a>Du har valgt: {{ query }}</a>
+
+<table border="1">
+    <tr>
+        <th>{{columns[0]}}</th>
+        <th>{{columns[1]}}</th>
+    </tr>
+    {% for element in data %}
+        <tr>
+            <td>{{ element.dyr }}</td>
+            <td>{{ element.zoo }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>

@@ -1,0 +1,14 @@
+services:
+  # Our app container
+  web:
+    build:
+      context: .
+      # We use our Docker file of course
+      dockerfile: Dockerfile
+
+    # This is an important line. We are mount the current directory inside of the container. This so our code changes outside of the container also modify what is inside of the container.
+    volumes:
+      - ./:/code
+    ports:
+      # This makes the port 5000 accessible outside of the docker
+      - "5000:5000"
