@@ -7,7 +7,6 @@ WORKDIR /code
 RUN apk add --no-cache gcc musl-dev linux-headers libpq-dev bash
 # For now we only copy pyproject.toml file to the docker image because we want to install all our Python libraries at this stage
 COPY pyproject.toml pyproject.toml
+COPY app.py app.py
+COPY . .
 RUN pip install -e .
-
-# The entry point is called only when the container starts
- ENTRYPOINT ["./entrypoint.sh"]
