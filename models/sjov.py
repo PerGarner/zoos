@@ -1,11 +1,11 @@
 from database import db_connection
 
 queridict = {
-    'Hvor mange zoos har dyret?': ('SELECT dyr, COUNT(zoo) AS number FROM dyrizoo GROUP BY dyr ORDER BY number DESC, dyr', ['Dyr', 'Antal Zoos']),
-    'Hvor mange dyr har hver zoo?': ('SELECT zoo, COUNT(dyr) AS number FROM dyrizoo GROUP BY zoo ORDER BY number DESC', ['Zoo', 'Antal dyr']),
-    'Hvor mange dyr har hver zoo, som andre zoos ikke har?': (
+    'Hvor mange zoos har hver dyreart?': ('SELECT dyr, COUNT(zoo) AS number FROM dyrizoo GROUP BY dyr ORDER BY number DESC, dyr', ['Dyr', 'Antal Zoos']),
+    'Hvor mange dyrearter har hver zoo?': ('SELECT zoo, COUNT(dyr) AS number FROM dyrizoo GROUP BY zoo ORDER BY number DESC', ['Zoo', 'Antal dyrearter']),
+    'Hvor mange dyrearter har hver zoo, som andre zoos ikke har?': (
         'SELECT zoo, COUNT(dyr) as number FROM dyrizoo NATURAL JOIN (SELECT dyr FROM dyrizoo GROUP BY dyr HAVING COUNT(zoo)=1) GROUP BY zoo ORDER BY number DESC',
-        ['Dyr', 'Antal Zoos'])
+        ['Dyr', 'Antal dyrearter'])
 }
 
 class Dyrizoo:

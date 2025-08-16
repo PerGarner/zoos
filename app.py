@@ -1,6 +1,6 @@
 from flask import Flask
 from database import init_db
-from controllers import lister, main, sjov, findetdyr
+from controllers import lister, main, sjov, findetdyr, omsiden
 import os
 
 init_db()
@@ -11,6 +11,7 @@ app.register_blueprint(lister.bp)
 app.register_blueprint(main.bp)
 app.register_blueprint(sjov.bp)
 app.register_blueprint(findetdyr.bp)
+app.register_blueprint(omsiden.bp)
 
 
 
